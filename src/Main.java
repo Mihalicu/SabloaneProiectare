@@ -11,6 +11,7 @@ public class Main {
         playboyS2.add(img2);
         playboyS2.add(img3);
         Book playboy = new Book("Playboy");
+
         playboy.addContent(playboyS1);
         playboy.addContent(playboyS2);
         long endTime = System.currentTimeMillis();
