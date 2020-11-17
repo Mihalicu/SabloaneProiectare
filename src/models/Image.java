@@ -1,17 +1,15 @@
 package models;
-
 import services.ImageLoaderFactory;
-import services.Visitor;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class Image implements Element {
+public class Image implements Element{
 
     private String imageName;
 
-    public Image(String name) {
-        this.imageName = name;
+    public Image(String name){
+        this.imageName=name;
         try {
             TimeUnit.SECONDS.sleep(2);
             ImageLoaderFactory.create(name);
@@ -20,13 +18,12 @@ public class Image implements Element {
             e.printStackTrace();
         }
     }
-
-    public void print() {
-        System.out.println("models.Image with name: " + this.imageName);
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 
-    @Override
-    public void accept(Visitor visitor) {
-
+    public void print(){
+        System.out.println("models.Image with name: "+this.imageName);
     }
+
 }

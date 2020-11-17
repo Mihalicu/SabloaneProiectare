@@ -1,7 +1,5 @@
 package models;
 
-import services.Visitor;
-
 import java.util.ArrayList;
 
 public class Section implements Element{
@@ -18,6 +16,14 @@ public class Section implements Element{
         return content.indexOf(elm);
     }
 
+    public void accept(Visitor v) {
+
+        v.visit(this);
+        for (Element i:content){
+            i.accept(v);
+        }
+    }
+
     public void remove(Element elm){
         content.remove(elm);
     }
@@ -32,12 +38,4 @@ public class Section implements Element{
             i.print();
         }
     }
-    public void accept(Visitor visitor){
-        visitor.visit(this);
-        for (Element e :content){
-            e.accept(visitor);
-        }
-    }
-
-
 }

@@ -1,7 +1,5 @@
 package models;
 
-import services.Visitor;
-
 public class Table implements Element{
 
     private String name;
@@ -10,13 +8,12 @@ public class Table implements Element{
         this.name=name;
     }
 
-    public void print(){
-        System.out.println("models.Table with name: "+this.name);
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 
-    @Override
-    public void accept(Visitor visitor) {
-
+    public void print(){
+        System.out.println("models.Table with name: "+this.name);
     }
 
 }

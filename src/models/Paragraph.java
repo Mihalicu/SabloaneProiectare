@@ -1,16 +1,20 @@
 package models;
 
 import services.AlignStrategy;
-import services.Visitor;
 
 public class Paragraph implements Element{
 
-    String name;
-    AlignStrategy alignStrategy;
+    private String name;
+    private AlignStrategy alignStrategy;
 
     public Paragraph(String name){
         this.name=name;
     }
+
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
+
 
     public void print(){
 
@@ -19,11 +23,6 @@ public class Paragraph implements Element{
         }else{
             alignStrategy.render(this.name);
         }
-    }
-
-    @Override
-    public void accept(Visitor visitor) {
-
     }
 
     public void setAlignStrategy(AlignStrategy alignStrategy){

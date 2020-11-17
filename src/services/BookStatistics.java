@@ -2,31 +2,41 @@ package services;
 
 import models.*;
 
-public class BookStatistics implements Visitor{
-    private int imagesCounter = 0;
-    private int tablesCounter = 0;
-    private int paragraphCounter = 0;
-    private int sectionCounter = 0;
+public class BookStatistics implements Visitor {
+
+    int paragraphs=0,sections=0,imageproxy=0,images=0,tables=0,book=0;
 
 
-    public void visit(Image image){imagesCounter++;}
-    public void visit(ImageProxy imageProxy){paragraphCounter++;}
+    public void visit(Book b) {
+        book++;
+    }
 
     @Override
-    public void visit(Paragraph paragraph) {
-
+    public void visit(Section s) {
+        sections++;
     }
 
-    public void visit(Table table){tablesCounter++;}
+    @Override
+    public void visit(Paragraph p) {
+        paragraphs++;
+    }
 
-    public void visit(Section section){sectionCounter++;}
+    @Override
+    public void visit(ImageProxy ip) {
+        imageproxy++;
+    }
+
+    @Override
+    public void visit(Image i) {
+        images++;
+    }
+
+    @Override
+    public void visit(Table t) {
+        tables++;
+    }
 
     public void printStatistics(){
-        System.out.println("Book Statistics: ");
-        System.out.println("Number of images: "+imagesCounter);
-        System.out.println("Number of tables: "+tablesCounter);
-        System.out.println("Number of paragraph: "+paragraphCounter);
-        System.out.println("Number of section: "+sectionCounter);
+        System.out.println("Books: "+book+"\nSections: "+sections+"\nparagraphs: "+paragraphs+"\nimages: "+images+"\nimageproxy: "+imageproxy+"\ntables: "+tables);
     }
-
 }
